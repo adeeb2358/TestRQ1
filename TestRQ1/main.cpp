@@ -7,9 +7,32 @@
 //
 
 #include <iostream>
+#include <vector>
+#include <string>
+
+int solution(std::vector<int> &A) {
+    if(A.empty()){
+        return 0;
+    }
+    
+    //int previous = A[0];
+    int operations = 0;
+    for(int i = 1; i < A.size()-1; i= i+2){
+        if(A[i] == A[i-1] || A[i] == A[i+1]){
+            operations++;
+        }else if((A[i] < A[i-1]) && (A[i] > A[i+1])){
+            operations++;
+        }else if(A[i] > A[i-1] && A[i] < A[i+1]){
+            operations++;
+        }
+    }
+    return operations;
+}
+
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    std::vector<int> input = {5,4,3,2,6};
+    auto result = solution(input);
+    std::cout << result;
     return 0;
 }
